@@ -1,0 +1,10 @@
+import {useState,useEffect} from 'react';
+import {useStore} from '../useStore';
+import {workspaceRequest} from '../api';
+const steps=[['upload','Upload'],['explorer','Explore'],['clean','Clean'],['automl','Train'],['runs','Evaluate'],['batch','Predict'],['builder','Report']];
+export default function WorkflowGuide(){
+  const {state,actions}=useStore();const [data,setData]=useState(null),[error,setError]=useState('');
+  useEffect(()=>{setData(null);setError('');if(!state.projectId)return;const pid=state.projectId;const controller=new AbortController();workspaceRequest(pid,'/workflow',undefined,controller.signal).then(value=>{setData(value);actions.setField('workflowMeta',value,pid);}).catch(e=>{if(!controller.signal.aborted)setError(e.message);});return()=>controller.abort();},[state.projectId,state.activeTab,state.profile,state.automlResults]);
+  const current=['features','forecast','text'].includes(state.activeTab)?'automl':['overview','quality','eda'].includes(state.activeTab)?'explorer':state.activeTab;
+  return <section className="workflow-guide" aria-label="Guided data science workflow"><div className="workflow-version" role="status">{state.projectId?(data?`Active dataset · Version ${data.version_number} · ${data.version_label}`:'Loading active version…'):'Start by uploading a dataset'}{error&&<span role="alert">{error}</span>}</div><nav aria-label="Workflow steps">{steps.map(([id,label],i)=><button key={id} aria-current={current===id?'step':undefined} disabled={!state.projectId&&id!=='upload'} onClick={()=>actions.setTab(id)}><span>{i+1}</span>{label}</button>)}</nav>{data?.outdated_runs>0&&<p className={data.current_runs?'workflow-history':'workflow-outdated'}>{data.outdated_runs} saved run(s) belong to other dataset versions.{!data.current_runs?' No trained model matches the active version. Retrain or explicitly select an older model in Batch Prediction.':' They remain in history; compare version and split settings before comparing scores.'}</p>}</section>;
+}

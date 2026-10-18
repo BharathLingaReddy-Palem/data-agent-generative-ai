@@ -1,0 +1,14 @@
+{
+  "dataset_name": "Retail fixture",
+  "analysis_plan": {"intent": "Explain sales", "agents_to_run": ["schema", "quality", "kpi", "trend", "hypothesis", "report"], "reasoning": "Compare regions and monthly sales using calculated evidence."},
+  "health_score": 92.5,
+  "kpi_results": {"kpi_interpretation": "Sales total is 350.", "kpi_metrics": [{"metric_name": "Sales", "total": 350}]},
+  "diagnostic_results": {"diagnostic_narrative": "East contributes 150."},
+  "trend_results": {"available": true, "trend_narrative": "Sales increased across three months.", "time_series_data": {"total_months": 3}},
+  "hypothesis_results": {"executive_summary": "One significant difference was found.", "tests_conducted": [{"test": "Welch t-test", "p_value": 0.01}]},
+  "benchmark_results": {"metrics_benchmarked": 1, "overall_competitive_position": "Competitive"},
+  "report_summary": "Retail executive summary.",
+  "report_markdown": "# Retail executive report",
+  "execution_steps": ["loaded", "computed"],
+  "errors": ["KPI warning", "EDA warning"]
+}

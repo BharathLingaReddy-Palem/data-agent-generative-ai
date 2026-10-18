@@ -1,0 +1,6 @@
+# Optional advanced models, tuning and explanations. Install after requirements.txt.
+xgboost>=2.1,<4
+lightgbm>=4.5,<5
+catboost>=1.2.7,<2
+optuna>=4,<5
+shap>=0.46,<1

@@ -1,0 +1,55 @@
+{
+  "evaluated_on": "2026-10-18",
+  "evidence": "artifacts/model-audit/tasks.json",
+  "tasks": {
+    "supervisor": [
+      {"provider": "groq", "model": "openai/gpt-oss-120b"},
+      {"provider": "nvidia", "model": "nvidia/nemotron-3.5-super-vl-120b-a12b"},
+      {"provider": "gemini", "model": "gemini-3.5-flash-lite"}
+    ],
+    "schema": [
+      {"provider": "nvidia", "model": "nvidia/nemotron-3.5-super-vl-120b-a12b"},
+      {"provider": "gemini", "model": "gemini-3.5-flash-lite"},
+      {"provider": "groq", "model": "openai/gpt-oss-120b"}
+    ],
+    "eda": [
+      {"provider": "nvidia", "model": "nvidia/nemotron-3.5-super-vl-120b-a12b"},
+      {"provider": "gemini", "model": "gemini-3.8-flash"},
+      {"provider": "nvidia", "model": "stepfun-ai/step-5-preview"}
+    ],
+    "hypothesis": [
+      {"provider": "nvidia", "model": "nvidia/nemotron-3.5-super-vl-120b-a12b"},
+      {"provider": "gemini", "model": "gemini-3.8-flash"},
+      {"provider": "nvidia", "model": "stepfun-ai/step-5-preview"}
+    ],
+    "trend": [
+      {"provider": "gemini", "model": "gemini-3.5-flash-lite"},
+      {"provider": "nvidia", "model": "nvidia/nemotron-3.5-super-vl-120b-a12b"},
+      {"provider": "groq", "model": "openai/gpt-oss-120b"}
+    ],
+    "chat_code": [
+      {"provider": "nvidia", "model": "nvidia/nemotron-3.5-super-vl-120b-a12b"},
+      {"provider": "groq", "model": "openai/gpt-oss-120b"},
+      {"provider": "nvidia", "model": "openai/gpt-oss-20b"}
+    ],
+    "chat_answer": [
+      {"provider": "nvidia", "model": "nvidia/nemotron-3.5-super-vl-120b-a12b"},
+      {"provider": "gemini", "model": "gemini-3.8-flash"},
+      {"provider": "groq", "model": "openai/gpt-oss-120b"}
+    ],
+    "comparison": [
+      {"provider": "gemini", "model": "gemini-3.8-flash"},
+      {"provider": "nvidia", "model": "nvidia/nemotron-3.5-super-vl-120b-a12b"},
+      {"provider": "groq", "model": "openai/gpt-oss-120b"}
+    ]
+  },
+  "excluded": {
+    "z-ai/glm-5.3-flash": "Five non-streaming task requests timed out; not accepted as a code primary.",
+    "google/diffusiongemma-26b-a4b-it": "Plan instruction and p-value interpretation failures in synthetic task checks."
+  },
+  "task_restrictions": {
+    "groq/openai/gpt-oss-120b": "Excluded from hypothesis routes after an incorrect p-value definition in the initial benchmark.",
+    "gemini/gemini-3.5-flash-lite": "Excluded from EDA/hypothesis interpretation routes after an incorrect p-value definition during live route validation; retained for plans and computed forecast commentary."
+  },
+  "limits": "Per-key reservations are conservative configuration, not verified provider quota. Tests are small synthetic checks, not a comprehensive ranking."
+}

@@ -1,0 +1,21 @@
+{
+  "pareto_80_percent_categories": 1,
+  "pareto_expected": 2,
+  "cache_same_after_middle_row_change": true,
+  "experiment_same_after_middle_row_change": true,
+  "cleaned_columns": [
+    "a_b",
+    "a_b"
+  ],
+  "workflow_stub_check": {
+    "quality_received_schema": false,
+    "visualization_received_trend": false,
+    "quality_error_propagated": false
+  },
+  "benchmark_units": {
+    "input": "raw profit amount = 35",
+    "matched_label": "Profit Margin %",
+    "unit": "%",
+    "rating": "World Class ⭐"
+  }
+}
